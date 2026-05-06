@@ -1,22 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { semanticSearch, type SemanticSearchResult } from "@/lib/api/search";
 import { SearchInput } from "@/components/shared/SearchInput";
 import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
 
-export default function SearchPage() {
+// Inner component — uses useSearchParams, must be inside <Suspense>
+function SearchContent() {
     const searchParams = useSearchParams();
-
-    // Pre-fill from ?q= so the home page search box can redirect here with a query.
     const [query, setQuery] = useState(searchParams.get("q") ?? "");
     const [results, setResults] = useState<SemanticSearchResult[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    // Debounced search — fires 400 ms after the user stops typing.
     useEffect(() => {
         if (!query.trim()) {
             setResults([]);
@@ -128,5 +126,15 @@ export default function SearchPage() {
                 </div>
             )}
         </section>
+    );
+}
+
+// Page export — wraps SearchContent in Suspense as required by Next.js
+// when useSearchParams() is used in a client component during static generation
+export default function SearchPage() {
+    return (
+        <Suspense fallback={<LoadingSpinner />}>
+            <SearchContent />
+        </Suspense>
     );
 }

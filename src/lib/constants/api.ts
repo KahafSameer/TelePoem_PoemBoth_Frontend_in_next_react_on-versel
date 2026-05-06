@@ -1,7 +1,7 @@
 // Set NEXT_PUBLIC_API_URL in your .env.local to override the default API base URL.
 // Example: NEXT_PUBLIC_API_URL=http://127.0.0.1:8000/api/v1
 export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/v1";
+  process.env.NEXT_PUBLIC_API_URL ?? "http://16.16.128.23:8000/api/v1";
 
 export const API_ENDPOINTS = {
   booths: "/booths",
