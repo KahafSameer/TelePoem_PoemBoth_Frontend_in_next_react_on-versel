@@ -1,65 +1,82 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-indigo-50 via-violet-50 to-slate-50">
+      {/* Decorative floating circles */}
+      <div
+        className="float-slow pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-indigo-200/40 blur-3xl"
+        aria-hidden="true"
+      />
+      <div
+        className="float-medium pointer-events-none absolute -bottom-16 -right-16 h-64 w-64 rounded-full bg-violet-200/40 blur-3xl"
+        aria-hidden="true"
+      />
+      <div
+        className="float-slow pointer-events-none absolute left-1/2 top-1/3 h-48 w-48 -translate-x-1/2 rounded-full bg-amber-100/30 blur-2xl"
+        aria-hidden="true"
+      />
+
+      {/* Content */}
+      <div className="relative mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center px-6">
+        {/* Wordmark */}
+        <div className="mb-2 flex items-center gap-2">
+          <span className="text-2xl" aria-hidden="true">📜</span>
+          <span className="text-sm font-semibold uppercase tracking-widest text-indigo-500">
+            TelePoem
+          </span>
+          <span className="text-2xl" aria-hidden="true">📜</span>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        <h1 className="text-center text-5xl font-bold tracking-tight text-indigo-900">
+          TelePoem Interface
+        </h1>
+        <p className="mt-3 text-center text-lg text-slate-600">
+          A poetry kiosk experience — choose where you&apos;d like to go.
+        </p>
+
+        {/* Entry cards */}
+        <div className="mt-10 grid w-full gap-5 sm:grid-cols-2">
+          {/* Kiosk card — amber accent */}
+          <Link
+            href="/client"
+            className="group relative rounded-2xl border border-amber-200 bg-white p-7 shadow-sm ring-2 ring-amber-400/60 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-2xl shadow-sm">
+              🎭
+            </div>
+            <h2 className="text-2xl font-semibold text-slate-900">TelePoem</h2>
+            <p className="mt-2 text-sm leading-relaxed text-slate-600">
+              Public poetry browsing with booth, collection, poem, and audio flow.
+            </p>
+            <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-amber-600 transition-colors group-hover:text-amber-700">
+              Browse poetry
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          </Link>
+
+          {/* Admin card — slate accent */}
+          <Link
+            href="/admin"
+            className="group relative rounded-2xl border border-slate-200 bg-white p-7 shadow-sm ring-2 ring-slate-300 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
           >
-            Documentation
-          </a>
+            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-slate-50 text-2xl shadow-sm">
+              ⚙️
+            </div>
+            <h2 className="text-2xl font-semibold text-slate-900">Admin Dashboard</h2>
+            <p className="mt-2 text-sm leading-relaxed text-slate-600">
+              Manage booths, collections, poets, and poems.
+            </p>
+            <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-slate-600 transition-colors group-hover:text-slate-800">
+              Open dashboard
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          </Link>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
