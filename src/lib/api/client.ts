@@ -8,7 +8,11 @@ const request = async <T>(
 ): Promise<T> => {
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     method,
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      // Required when backend is behind ngrok — skips the browser warning page
+      "ngrok-skip-browser-warning": "true",
+    },
     ...(body !== undefined ? { body: JSON.stringify(body) } : {}),
   });
 
