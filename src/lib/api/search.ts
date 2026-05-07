@@ -52,7 +52,11 @@ export async function semanticSearch(
         top_k: String(topK),
     });
 
-    const res = await fetch(`${API_BASE_URL}/search?${params.toString()}`);
+    const res = await fetch(`${API_BASE_URL}/search?${params.toString()}`, {
+        headers: {
+            "ngrok-skip-browser-warning": "true",
+        },
+    });
 
     if (!res.ok) {
         throw new Error(`Semantic search failed: ${res.status} ${res.statusText}`);
